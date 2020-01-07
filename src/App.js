@@ -3,6 +3,14 @@ import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    input: "Hello"
+  };
+  updateInput = event => {
+    this.setState({
+      input: event.target.value
+    });
+  };
   submit = () => {
     console.log(this.email.value);
   };
@@ -16,17 +24,14 @@ class App extends Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
           <Welcome text="Welcome to using Props" />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
 
-          <input type="text" ref={input => (this.text = input)} />
-          <input type="email" ref={input => (this.email = input)} />
+          <input
+            type="text"
+            onChange={this.updateInput}
+            value={this.state.input}
+          />
+
+          <h3>The input value is: {this.state.input}</h3>
 
           <button onClick={this.submit}>Show Value</button>
         </header>
