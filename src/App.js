@@ -2,48 +2,35 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-class App extends Component {
-  state = {
-    input: "Hello"
-  };
-  updateInput = event => {
-    this.setState({
-      input: event.target.value
-    });
-  };
-  submit = () => {
-    console.log(this.email.value);
-  };
+import Movie from "./Movie";
 
+const movies = [
+  {
+    id: 1,
+    title: "Star Wars"
+  },
+  {
+    id: 2,
+    title: "Batman Begins"
+  },
+  {
+    id: 3,
+    title: "No Country For Old Men"
+  }
+];
+
+class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <Welcome text="Welcome to using Props" />
-
-          <input
-            type="text"
-            onChange={this.updateInput}
-            value={this.state.input}
-          />
-
-          <h3>The input value is: {this.state.input}</h3>
-
-          <button onClick={this.submit}>Show Value</button>
         </header>
+        {movies.map(movie => (
+          <Movie key={movie.id} movie={movie} />
+        ))}
       </div>
     );
-  }
-}
-
-class Welcome extends Component {
-  render() {
-    const { text } = this.props;
-    return <h1>{text}</h1>;
   }
 }
 
